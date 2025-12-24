@@ -1,5 +1,6 @@
 import sys
 import re
+from auth import authenticate_user, bootstrap_first_user, init_db
 
 
 def print_usage():
@@ -17,10 +18,17 @@ def validate_container_name(name: str) -> bool:
 
 def handle_enter(container_name: str):
     print(f"[INFO] Requested access to container: {container_name}")
-    print("[INFO] CLI parsing and validation successful")
+
+    user = authenticate_user()
+
+    print("[INFO] Authentication successful")
+    print(f"[DEBUG] User context: {user}")
 
 
 def main():
+    init_db()
+    bootstrap_first_user()
+
     args = sys.argv
 
     if len(args) < 2:
