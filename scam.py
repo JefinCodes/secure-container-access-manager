@@ -1,6 +1,7 @@
 import sys
 import re
 from auth import authenticate_user, bootstrap_first_user, init_db
+from rbac import authorize_user
 
 
 def print_usage():
@@ -21,7 +22,9 @@ def handle_enter(container_name: str):
 
     user = authenticate_user()
 
-    print("[INFO] Authentication successful")
+    authorize_user(user, container_name)
+
+    print("[INFO] Authorization successful")
     print(f"[DEBUG] User context: {user}")
 
 
