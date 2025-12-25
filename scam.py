@@ -3,6 +3,7 @@ import re
 from auth import authenticate_user, bootstrap_first_user, init_db
 from rbac import authorize_user
 from docker_utils import inspect_container
+from shell import start_container_shell
 
 
 def print_usage():
@@ -29,8 +30,8 @@ def handle_enter(container_name: str):
 
     print("[INFO] Docker inspection successful")
     print(f"[INFO] Container '{container['name']}' is running")
-    print(f"[DEBUG] User context: {user}")
-    print(f"[DEBUG] Container context: {container}")
+    
+    start_container_shell(container_name)
 
 
 def main():
