@@ -16,7 +16,18 @@ def init_container_table():
         container_name TEXT PRIMARY KEY,
         owner_username TEXT NOT NULL,
         assigned_at TEXT NOT NULL
-    )
+    );
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS audit_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        container_name TEXT NOT NULL,
+        start_time TEXT NOT NULL,
+        end_time TEXT,
+        exit_code INTEGER
+    );
     """)
 
     conn.commit()

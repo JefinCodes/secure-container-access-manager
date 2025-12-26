@@ -31,7 +31,7 @@ def handle_enter(container_name: str):
     print("[INFO] Docker inspection successful")
     print(f"[INFO] Container '{container['name']}' is running")
     
-    start_container_shell(container_name)
+    start_container_shell(container_name, user["username"])
 
 
 def main():
